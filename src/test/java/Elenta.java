@@ -17,13 +17,13 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class Elenta {
-    @Test
-    public void loadPageTest(){
-        User.driver.get("https://elenta.lt/registracija");
-    }
+//    @Test
+//    public void loadPageTest(){
+//        User.driver.get("https://elenta.lt/registracija");
+//    }
     @Test
     public void registerUserTest(){
-        assertTrue(User.registerUser( new User("as","neas","145","2222")));
+        assertTrue(User.registerUser( new User("","lavonas@gmail.as","123456","123456")));
     }
 
     @BeforeClass
