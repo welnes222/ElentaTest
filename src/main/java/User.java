@@ -17,7 +17,6 @@ public class User {
     }
     public static boolean registerUser(User user) {
         driver.get("https://elenta.lt/registracija");
-        driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
         WebElement username = driver.findElement(By.id("UserName"));
         WebElement email = driver.findElement(By.id("Email"));
         WebElement password = driver.findElement(By.id("Password"));

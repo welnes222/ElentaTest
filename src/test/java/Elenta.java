@@ -80,8 +80,12 @@ public class Elenta {
         assertFalse(User.registerUser( new User("Kalvarija ","Saimis@hotmail.com","123456","123456")));
     }
     @Test
-    public void registeroneNumberUsername(){
-        assertFalse(User.registerUser( new User("1","Saimisss@hotmail.com","123456","123456")));
+    public void registerOneNumberUsername(){
+        assertFalse(User.registerUser( new User("7","Saimsasasasisss@hotmail.com","123456","123456")));
+    }
+    @Test
+    public void registerNoLettersUsername(){
+        assertFalse(User.registerUser( new User("$$$$$$$$$","Saimisss@hotmail.com","123456","123456")));
     }
     @Test
     public void registeruserNameWithSpaceInMiddleTest(){
@@ -147,10 +151,23 @@ public class Elenta {
     public void registerPasswordMismatchTest(){
         assertFalse(User.registerUser( new User("Saulius","Saimis@hotmail.com","123456","ČĘĘĖĮŠ")));
     }
+    @Test
+    public void adCreate(){
+       assertTrue(CreateAd.creation(new CreateAd("Sulinio dangtis","kokybiskas dangtis, be defektu", "43","Vilnius","869871237","planktonas@gmail.com")));
+
+    }
+    @Test
+    public void flood(){
+        for (int i = 0; i < 20; i++) {
+            adCreate();
+        }
+    }
     @BeforeClass
     public void beforeClass() {
         User.driver = new ChromeDriver();
         User.driver.manage().window().maximize();
         User.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        User.driver.get("https://elenta.lt/prisijungti");
+        User.driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
     }
 }

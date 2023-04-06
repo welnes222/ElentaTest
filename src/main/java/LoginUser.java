@@ -12,7 +12,6 @@ public class LoginUser {
     }
     public static boolean login(LoginUser loginuser) {
         User.driver.get("https://elenta.lt/prisijungti");
-        User.driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
         WebElement loginusername = User.driver.findElement(By.id("UserName"));
         WebElement loginpassword = User.driver.findElement(By.id("Password"));
         WebElement submit = User.driver.findElement(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[4]/td[2]/input"));
@@ -25,6 +24,7 @@ public class LoginUser {
         boolean output = true;
 
         if(!User.driver.findElements(By.id("header-container-search")).isEmpty()){
+            User.driver.get("https://elenta.lt/accounts/logout");
             return true;
         }
         List<WebElement> usernameError = User.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[1]/td[2]/span"));
