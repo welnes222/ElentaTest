@@ -39,24 +39,23 @@ public class User {
         List<WebElement> loginError = driver.findElements(By.xpath("//*[@id=\"main-container\"]/form/fieldset/table/tbody/tr[1]/td[2]/span"));
         List<WebElement> emailError = driver.findElements(By.xpath("//*[@id=\"main-container\"]/form/fieldset/table/tbody/tr[4]/td[2]/span"));
         List<WebElement> passwordError = driver.findElements(By.xpath("//*[@id=\"main-container\"]/form/fieldset/table/tbody/tr[7]/td[2]/span"));
-//        List<WebElement> password2Error = driver.findElements(By.xpath("//*[@id=\"main-container\"]/form/fieldset/table/tbody/tr[8]/td[2]/span"));
-        if (!loginError.get(0).getText().contains("https://elenta.lt")){
+        List<WebElement> password2Error = driver.findElements(By.xpath("//*[@id=\"main-container\"]/form/fieldset/table/tbody/tr[8]/td[2]/span"));
+        if (loginError.size() > 0) {
             System.out.println(loginError.get(0).getText());
             output = false;
         }
-        if (!emailError.get(0).getText().contains("https://elenta.lt")) {
+        if (emailError.size() > 0) {
             System.out.println(emailError.get(0).getText());
             output = false;
         }
-        if (!passwordError.get(0).getText().contains("https://elenta.lt")) {
+        if (passwordError.size() > 0) {
             System.out.println(passwordError.get(0).getText());
             output = false;
         }
-//        if (!password2Error.get(0).getText().contains("https://elenta.lt")) {
-//            System.out.println(password2Error.get(0).getText());
-//            output = false;
-//        }
-
+        if (password2Error.size() > 0) {
+            System.out.println(password2Error.get(0).getText());
+            output = false;
+        }
         return output;
     }
 }

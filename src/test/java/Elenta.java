@@ -8,23 +8,60 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.*;
-
 import java.lang.reflect.Array;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 public class Elenta {
     @Test
-    public void loginTest(){
+    public void loginCorrectTest(){
         assertTrue(LoginUser.login( new LoginUser("Kupiskis", "123456")));
     }
     @Test
+    public void loginWithSpaceUsernameEndTest(){
+        assertFalse(LoginUser.login( new LoginUser("Kupiskis ", "123456")));
+    }
+    @Test
+    public void loginWithDotUsernameFrontTest(){
+        assertFalse(LoginUser.login( new LoginUser(" Kupi.skis", "123456")));
+    }
+    @Test
+    public void loginEmptyPasswordTest(){
+        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", "")));
+    }
+    @Test
+    public void loginWithSpaceInsteadOfPasswordTest(){
+        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", " ")));
+    }
+    @Test
+    public void loginWithSpaceUsernameFrontTest(){
+        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", " 123456")));
+    }
+    @Test
+    public void loginWithSpaceUsername2EndTest(){
+        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", "123456 ")));
+    }
+    @Test
+    public void loginWithIncorrectPasswordFrontTest(){
+        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", "12138918adawd1aw8fwaf")));
+    }
+    @Test
+    public void loginWithSpaceInMiddleUsernameTest(){
+        assertFalse(LoginUser.login( new LoginUser("Kupi skis ", "123456")));
+    }
+    @Test
+    public void loginWithIncorrectUsernameTest(){
+        assertFalse(LoginUser.login( new LoginUser("Neteisingasprisijungimas", "123456")));
+    }
+    @Test
+    public void loginWithRandomSymbolsInnameEndTest(){
+        assertFalse(LoginUser.login( new LoginUser("Kupiskis!@@#$%%^", "123456")));
+    }
+    @Test
     public void loginEmptyUsernameTest(){
-        assertFalse(LoginUser.login( new LoginUser("", "ftjftjft")));
+        assertFalse(LoginUser.login( new LoginUser("", "123456")));
     }
     @Test
     public void registerUserTest(){
@@ -104,16 +141,16 @@ public class Elenta {
     }
     @Test
     public void registerPassword2RandomSymbolsTest(){
+        assertFalse(User.registerUser( new User("Saulius","Saimis@hotmail.com","ČĘĘĖĮŠ","ČĘĘĖĮŠ")));
+    }
+    @Test
+    public void registerPasswordMismatchTest(){
         assertFalse(User.registerUser( new User("Saulius","Saimis@hotmail.com","123456","ČĘĘĖĮŠ")));
     }
     @BeforeClass
     public void beforeClass() {
-//        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver111.exe");
         User.driver = new ChromeDriver();
         User.driver.manage().window().maximize();
-        User.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-//        User.driver.get("https://elenta.lt/prisijungti");
-//        User.driver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
-
+        User.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 }
