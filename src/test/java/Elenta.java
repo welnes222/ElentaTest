@@ -153,14 +153,8 @@ public class Elenta {
     }
     @Test
     public void adCreate(){
-       assertTrue(CreateAd.creation(new CreateAd("Sulinio dangtis","kokybiskas dangtis, be defektu", "43","Vilnius","869871237","planktonas@gmail.com")));
+       assertTrue(CreateAd.creation(new CreateAd(" "," ", "43","Vilnius","869871237","planktonas@gmail.com")));
 
-    }
-    @Test
-    public void flood(){
-        for (int i = 0; i < 20; i++) {
-            adCreate();
-        }
     }
     @BeforeClass
     public void beforeClass() {

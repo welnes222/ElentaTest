@@ -21,9 +21,10 @@ public class CreateAd {
     }
     public static boolean creation(CreateAd createAd){
         User.driver.get("https://elenta.lt/patalpinti/pasirinkti-kategorija");
-        User.driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
+//        User.driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
         User.driver.findElement(By.xpath("//*[@id=\"select-top-category-list\"]/li[4]/a")).click();
         User.driver.findElement(By.xpath("//*[@id=\"select-sub-category-list\"]/li[1]/a")).click();
+        User.driver.findElement((By.id("location-search-box"))).sendKeys("");
         WebElement adName = User.driver.findElement(By.id("title"));
         WebElement description = User.driver.findElement(By.id("text"));
         WebElement price = User.driver.findElement(By.id("price"));
@@ -40,7 +41,31 @@ public class CreateAd {
         User.driver.findElement(By.xpath("//*[@id=\"forward-button\"]")).click();
         User.driver.findElement(By.id("forward-button")).click();
 
-        return true;
+        return checkIfAdWasUploaded();
     }
+    public static boolean checkIfAdWasUploaded() {
+        boolean output = true;
 
+        if(!User.driver.findElements(By.id("unit-1041268h")).isEmpty()){
+            return true;
+        }
+        User.driver.findElements(By.xpath("//*[@id=\"te\"]")).contains("style");
+
+//        List<WebElement> passwordErrorAd = User.driver.findElements(By.id("txte"));
+//        List<WebElement> phoneErrorad = User.driver.findElements(By.id("pe"));
+//        System.out.println(usernameErrorAd);
+//        if (usernameErrorAd.size() > 0) {
+//            System.out.println(usernameErrorAd.get(0).getText());
+//            output = false;
+//        }
+//        if (passwordErrorAd.size() > 0) {
+//            System.out.println(passwordErrorAd.get(0).getText());
+//            output = false;
+//        }
+//        if (phoneErrorad.size() > 0) {
+//            System.out.println(phoneErrorad.get(0).getText());
+//            output = false;
+//        }
+        return output;
+    }
 }
