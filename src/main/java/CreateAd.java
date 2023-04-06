@@ -49,23 +49,21 @@ public class CreateAd {
         if(!User.driver.findElements(By.id("unit-1041268h")).isEmpty()){
             return true;
         }
-        User.driver.findElements(By.xpath("//*[@id=\"te\"]")).contains("style");
-
-//        List<WebElement> passwordErrorAd = User.driver.findElements(By.id("txte"));
-//        List<WebElement> phoneErrorad = User.driver.findElements(By.id("pe"));
-//        System.out.println(usernameErrorAd);
-//        if (usernameErrorAd.size() > 0) {
-//            System.out.println(usernameErrorAd.get(0).getText());
-//            output = false;
-//        }
-//        if (passwordErrorAd.size() > 0) {
-//            System.out.println(passwordErrorAd.get(0).getText());
-//            output = false;
-//        }
-//        if (phoneErrorad.size() > 0) {
-//            System.out.println(phoneErrorad.get(0).getText());
-//            output = false;
-//        }
+        List<WebElement> usernameErrorAd = User.driver.findElements(By.id("te"));
+        List<WebElement> passwordErrorAd = User.driver.findElements(By.id("txte"));
+        List<WebElement> phoneErrorAd = User.driver.findElements(By.id("pe"));
+        if (usernameErrorAd.size() > 0) {
+            System.out.println(usernameErrorAd.get(0).getText());
+            output = false;
+        }
+        if (passwordErrorAd.size() > 0) {
+            System.out.println(passwordErrorAd.get(0).getText());
+            output = false;
+        }
+        if (phoneErrorAd.size() > 0) {
+            System.out.println(phoneErrorAd.get(0).getText());
+            output = false;
+        }
         return output;
     }
 }
