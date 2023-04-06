@@ -11,10 +11,10 @@ public class LoginUser {
         this.loginpassword = loginpassword;
     }
     public static boolean login(LoginUser loginuser) {
-        User.driver.get("https://elenta.lt/prisijungti");
-        WebElement loginusername = User.driver.findElement(By.id("UserName"));
-        WebElement loginpassword = User.driver.findElement(By.id("Password"));
-        WebElement submit = User.driver.findElement(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[4]/td[2]/input"));
+        RegisterUser.driver.get("https://elenta.lt/prisijungti");
+        WebElement loginusername = RegisterUser.driver.findElement(By.id("UserName"));
+        WebElement loginpassword = RegisterUser.driver.findElement(By.id("Password"));
+        WebElement submit = RegisterUser.driver.findElement(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[4]/td[2]/input"));
         loginusername.sendKeys(loginuser.loginusername);
         loginpassword.sendKeys(loginuser.loginpassword);
         submit.click();
@@ -23,13 +23,13 @@ public class LoginUser {
     public static boolean checkLoginFormStatus() {
         boolean output = true;
 
-        if(!User.driver.findElements(By.id("header-container-search")).isEmpty()){
-            User.driver.get("https://elenta.lt/accounts/logout");
+        if(!RegisterUser.driver.findElements(By.id("header-container-search")).isEmpty()){
+            RegisterUser.driver.get("https://elenta.lt/accounts/logout");
             return true;
         }
-        List<WebElement> usernameError = User.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[1]/td[2]/span"));
-        List<WebElement> passwordError = User.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[3]/td[2]/span"));
-        List<WebElement> bothError = User.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[5]/td/div/ul/li"));
+        List<WebElement> usernameError = RegisterUser.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[1]/td[2]/span"));
+        List<WebElement> passwordError = RegisterUser.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[3]/td[2]/span"));
+        List<WebElement> bothError = RegisterUser.driver.findElements(By.xpath("//*[@id=\"form\"]/fieldset/table/tbody/tr[5]/td/div/ul/li"));
         if (usernameError.size() > 0) {
             System.out.println(usernameError.get(0).getText());
             output = false;

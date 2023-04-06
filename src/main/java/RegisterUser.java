@@ -1,21 +1,20 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
-public class User {
+public class RegisterUser {
     public String username;
     public String email;
     public String password;
     public String password2;
     public static WebDriver driver;
-    public User(String username, String email, String password, String password2) {
+    public RegisterUser(String username, String email, String password, String password2) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.password2 = password2;
     }
-    public static boolean registerUser(User user) {
+    public static boolean registerUser(RegisterUser user) {
         driver.get("https://elenta.lt/registracija");
         WebElement username = driver.findElement(By.id("UserName"));
         WebElement email = driver.findElement(By.id("Email"));
