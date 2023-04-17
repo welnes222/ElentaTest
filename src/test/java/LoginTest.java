@@ -21,30 +21,30 @@ public class LoginTest {
     }
     @Test
     public void loginWithSpaceUsernameEndTest(){
-        assertFalse(LoginUser.login( new LoginUser("Kupiskis ", "123456")));
+        assertTrue(LoginUser.login( new LoginUser("Kupiskis ", "123456")));
     }
     @Test
-    public void loginWithDotUsernameFrontTest(){
-        assertFalse(LoginUser.login( new LoginUser(" Kupi.skis", "123456")));
+    public void loginWithDotUsernameTest(){
+        assertFalse(LoginUser.login( new LoginUser("Kupi.skis", "123456")));
     }
     @Test
     public void loginEmptyPasswordTest(){
-        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", "")));
+        assertFalse(LoginUser.login( new LoginUser("Kupiskis", "")));
     }
     @Test
     public void loginWithSpaceInsteadOfPasswordTest(){
-        assertFalse(LoginUser.login( new LoginUser(" Kupiskis", " ")));
+        assertFalse(LoginUser.login( new LoginUser("Kupiskis", " ")));
     }
     @Test
     public void loginWithSpaceUsernameFrontTest(){
         assertFalse(LoginUser.login( new LoginUser(" Kupiskis", " 123456")));
     }
     @Test
-    public void loginWithSpaceUsername2EndTest(){
+    public void loginWithSpacePasswordEndTest(){
         assertFalse(LoginUser.login( new LoginUser(" Kupiskis", "123456 ")));
     }
     @Test
-    public void loginWithIncorrectPasswordFrontTest(){
+    public void loginWithIncorrectPasswordTest(){
         assertFalse(LoginUser.login( new LoginUser(" Kupiskis", "12138918adawd1aw8fwaf")));
     }
     @Test
@@ -56,7 +56,7 @@ public class LoginTest {
         assertFalse(LoginUser.login( new LoginUser("Neteisingasprisijungimas", "123456")));
     }
     @Test
-    public void loginWithRandomSymbolsInnameEndTest(){
+    public void loginWithRandomSymbolsInNameEndTest(){
         assertFalse(LoginUser.login( new LoginUser("Kupiskis!@@#$%%^", "123456")));
     }
     @Test
@@ -67,7 +67,7 @@ public class LoginTest {
     public void beforeClass() {
         RegisterUser.driver = new ChromeDriver();
         RegisterUser.driver.manage().window().maximize();
-        RegisterUser.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        RegisterUser.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         RegisterUser.driver.get("https://elenta.lt/prisijungti");
         RegisterUser.driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
     }

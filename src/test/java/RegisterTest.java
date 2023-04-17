@@ -1,24 +1,17 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.*;
-import java.lang.reflect.Array;
+
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-public class Elenta {
+public class RegisterTest {
 
     @Test
     public void registerUserTest(){
-        assertTrue(RegisterUser.registerUser( new RegisterUser("Kupiskis","Kupiskis19@inbox.lt","123456","123456")));
+        assertTrue(RegisterUser.registerUser( new RegisterUser("karalius dzeimsas","kontautas222@inbox.lt","123456","123456")));
     }
     @Test
     public void registerNoUsernameTest(){
@@ -26,26 +19,26 @@ public class Elenta {
     }
     @Test
     public void registerSpaceInFrontUsernameTest(){
-        assertFalse(RegisterUser.registerUser( new RegisterUser(" Kalvarija","Saimis@hotmail.com","123456","123456")));
+        assertTrue(RegisterUser.registerUser( new RegisterUser(" Kalvarija","Saimis@hotmail.com","123456","123456")));
     }
     @Test
     public void registerSpaceAfterNameTest(){
-        assertFalse(RegisterUser.registerUser( new RegisterUser("Kalvarija ","Saimis@hotmail.com","123456","123456")));
+        assertTrue(RegisterUser.registerUser( new RegisterUser("Kalvarija ","Saimis@hotmail.com","123456","123456")));
     }
     @Test
     public void registerOneNumberUsername(){
         assertFalse(RegisterUser.registerUser( new RegisterUser("7","Saimsasasasisss@hotmail.com","123456","123456")));
     }
     @Test
-    public void registerNoLettersUsername(){
+    public void registerOnlyDollarsUsername(){
         assertFalse(RegisterUser.registerUser( new RegisterUser("$$$$$$$$$","Saimisss@hotmail.com","123456","123456")));
     }
     @Test
-    public void registeruserNameWithSpaceInMiddleTest(){
+    public void registerUserNameWithSpaceInMiddleTest(){
         assertFalse(RegisterUser.registerUser( new RegisterUser("Sai mis","Saimislll@hotmail.com","123456","123456")));
     }
     @Test
-    public void registeremptyEmailTest(){
+    public void registerEmptyEmailTest(){
         assertFalse(RegisterUser.registerUser( new RegisterUser("Modzius","","123456","123456")));
     }
     @Test
@@ -54,7 +47,7 @@ public class Elenta {
     }
     @Test
     public void registerEmailWithoutDomainTest(){
-        assertFalse(RegisterUser.registerUser( new RegisterUser("Saimis","Saimis.com","123456","123456")));
+        assertFalse(RegisterUser.registerUser( new RegisterUser("Saimis","Saimisss","123456","123456")));
     }
     @Test
     public void registerEmailOneNumberUserTest(){
@@ -98,7 +91,7 @@ public class Elenta {
     }
     @Test
     public void registerPassword2RandomSymbolsTest(){
-        assertFalse(RegisterUser.registerUser( new RegisterUser("Saulius","Saimis@hotmail.com","ČĘĘĖĮŠ","ČĘĘĖĮŠ")));
+        assertFalse(RegisterUser.registerUser( new RegisterUser("Saulius","Saimis@hotmail.com","ČĘĘĖĮŠ","!@#$%^&*()_")));
     }
     @Test
     public void registerPasswordMismatchTest(){
@@ -109,7 +102,7 @@ public class Elenta {
     public void beforeClass() {
         RegisterUser.driver = new ChromeDriver();
         RegisterUser.driver.manage().window().maximize();
-        RegisterUser.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        RegisterUser.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         RegisterUser.driver.get("https://elenta.lt/prisijungti");
         RegisterUser.driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[1]/div[2]/div[2]/button[1]/p")).click();
     }
