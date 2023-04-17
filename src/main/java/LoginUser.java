@@ -42,6 +42,6 @@ public class LoginUser {
             System.out.println(bothError.get(0).getText());
             output = false;
         }
-        return output;
+        return output;d
     }
 }
